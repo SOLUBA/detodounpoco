@@ -49,7 +49,7 @@
         }
 
         .articulo {
-            display: none; /* Se ocultan por defecto */
+            display: none; /* Oculto por defecto */
             background: white;
             border: 1px solid #ddd;
             border-radius: 8px;
@@ -60,12 +60,11 @@
 
         .articulo img {
             width: 100%;
-            height: 180px;
+            height: 200px;
             object-fit: cover;
             border-radius: 5px;
         }
 
-        /* Mostrar la categoría seleccionada */
         .articulo.mostrar {
             display: block;
         }
@@ -99,34 +98,42 @@
 
     <!-- Línea de Categorías -->
     <div class="categorias">
-        <button class="btn-categoria activo" onclick="filtrarCategoria('todas')">Todas</button>
-        <button class="btn-categoria" onclick="filtrarCategoria('pulseras')">Pulseras</button>
-        <button class="btn-categoria" onclick="filtrarCategoria('macrame')">Macramé</button>
-        <button class="btn-categoria" onclick="filtrarCategoria('colgantes')">Colgantes</button>
+        <button class="btn-categoria activo" onclick="filtrarCategoria('todas', event)">Todas</button>
+        <button class="btn-categoria" onclick="filtrarCategoria('pulseras', event)">Pulseras</button>
+        <button class="btn-categoria" onclick="filtrarCategoria('macrame', event)">Macramé</button>
+        <button class="btn-categoria" onclick="filtrarCategoria('colgantes', event)">Colgantes</button>
     </div>
 
-    <!-- Artículos por categoría -->
+    <!-- Galería con tus imágenes subidas -->
     <div class="galeria">
         <!-- Pulseras -->
         <div class="articulo pulseras">
-            <img src="https://via.placeholder.com/200" alt="Pulsera Dorada">
-            <h3>Pulsera Dorada</h3>
+            <img src="1.jpg" alt="Pulsera 1">
+            <h3>Pulsera 1</h3>
         </div>
         <div class="articulo pulseras">
-            <img src="https://via.placeholder.com/200" alt="Pulsera de Plata">
-            <h3>Pulsera de Plata</h3>
+            <img src="2.jpg" alt="Pulsera 2">
+            <h3>Pulsera 2</h3>
         </div>
 
         <!-- Macramé -->
         <div class="articulo macrame">
-            <img src="https://via.placeholder.com/200" alt="Tapiz Macramé">
-            <h3>Tapiz Macramé</h3>
+            <img src="3.jpg" alt="Macramé 1">
+            <h3>Macramé 1</h3>
+        </div>
+        <div class="articulo macrame">
+            <img src="4.jpg" alt="Macramé 2">
+            <h3>Macramé 2</h3>
         </div>
 
         <!-- Colgantes -->
         <div class="articulo colgantes">
-            <img src="https://via.placeholder.com/200" alt="Colgante de Cristal">
-            <h3>Colgante de Cristal</h3>
+            <img src="5.jpg" alt="Colgante 1">
+            <h3>Colgante 1</h3>
+        </div>
+        <div class="articulo colgantes">
+            <img src="10.jpg" alt="Colgante 2">
+            <h3>Colgante 2</h3>
         </div>
     </div>
 
@@ -136,21 +143,19 @@
         <div class="contacto-links">
             <a href="https://instagram.com/tu_usuario" target="_blank">Instagram</a> |
             <a href="https://facebook.com/tu_usuario" target="_blank">Facebook</a> |
-            <a href="https://wa.me/tu_numero" target="_blank">WhatsApp</a>
+            <a href="https://wa.me/56912345678" target="_blank">WhatsApp</a>
         </div>
     </footer>
 
-    <!-- Lógica para filtrar las opciones al hacer clic -->
+    <!-- Lógica del filtro -->
     <script>
-        function filtrarCategoria(categoria) {
+        function filtrarCategoria(categoria, e) {
             const articulos = document.querySelectorAll('.articulo');
             const botones = document.querySelectorAll('.btn-categoria');
 
-            // Cambiar estado activo de los botones
             botones.forEach(btn => btn.classList.remove('activo'));
-            event.target.classList.add('activo');
+            if(e) e.target.classList.add('activo');
 
-            // Mostrar/Ocultar artículos
             articulos.forEach(art => {
                 if (categoria === 'todas' || art.classList.contains(categoria)) {
                     art.classList.add('mostrar');
@@ -160,8 +165,10 @@
             });
         }
 
-        // Mostrar todos los artículos por defecto al cargar la página
-        filtrarCategoria('todas');
+        // Mostrar todo al cargar la página
+        window.onload = function() {
+            filtrarCategoria('todas');
+        };
     </script>
 
 </body>
