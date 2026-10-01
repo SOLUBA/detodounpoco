@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DE TODO UN POCO</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+        }
+
+        /* Botones de Categorías */
+        .categorias {
+            margin: 20px 0;
+        }
+
+        .btn-categoria {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            background-color: #e0e0e0;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .btn-categoria:hover, .btn-categoria.activo {
+            background-color: #007bff;
+            color: white;
+        }
+
+        /* Galería de productos */
+        .galeria {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .articulo {
+            display: none; /* Oculto por defecto */
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            width: 200px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .articulo img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .articulo.mostrar {
+            display: block;
+        }
+
+        /* Pie de página con contactos */
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+        }
+
+        .contacto-links a {
+            color: #2196F3;
+            margin: 0 10px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contacto-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Título principal -->
+    <header>
+        <h1>DE TODO UN POCO</h1>
+    </header>
+
+    <!-- Línea de Categorías -->
+    <div class="categorias">
+        <button class="btn-categoria activo" onclick="filtrarCategoria('todas', event)">Todas</button>
+        <button class="btn-categoria" onclick="filtrarCategoria('pulseras', event)">Pulseras</button>
+        <button class="btn-categoria" onclick="filtrarCategoria('macrame', event)">Macramé</button>
+        <button class="btn-categoria" onclick="filtrarCategoria('colgantes', event)">Colgantes</button>
+    </div>
+
+    <!-- Galería con tus imágenes subidas -->
+    <div class="galeria">
+        <!-- Pulseras -->
+        <div class="articulo pulseras">
+            <img src="1.jpg" alt="Pulsera 1">
+            <h3>Pulsera 1</h3>
+        </div>
+        <div class="articulo pulseras">
+            <img src="2.jpg" alt="Pulsera 2">
+            <h3>Pulsera 2</h3>
+        </div>
+
+        <!-- Macramé -->
+        <div class="articulo macrame">
+            <img src="3.jpg" alt="Macramé 1">
+            <h3>Macramé 1</h3>
+        </div>
+        <div class="articulo macrame">
+            <img src="4.jpg" alt="Macramé 2">
+            <h3>Macramé 2</h3>
+        </div>
+
+        <!-- Colgantes -->
+        <div class="articulo colgantes">
+            <img src="5.jpg" alt="Colgante 1">
+            <h3>Colgante 1</h3>
+        </div>
+        <div class="articulo colgantes">
+            <img src="10.jpg" alt="Colgante 2">
+            <h3>Colgante 2</h3>
+        </div>
+    </div>
+
+    <!-- Contacto al final -->
+    <footer>
+        <h3>Contáctenos en:</h3>
+        <div class="contacto-links">
+            <a href="https://instagram.com/tu_usuario" target="_blank">Instagram</a> |
+            <a href="https://facebook.com/tu_usuario" target="_blank">Facebook</a> |
+            <a href="https://wa.me/56912345678" target="_blank">WhatsApp</a>
+        </div>
+    </footer>
+
+    <!-- Lógica del filtro -->
+    <script>
+        function filtrarCategoria(categoria, e) {
+            const articulos = document.querySelectorAll('.articulo');
+            const botones = document.querySelectorAll('.btn-categoria');
+
+            botones.forEach(btn => btn.classList.remove('activo'));
+            if(e) e.target.classList.add('activo');
+
+            articulos.forEach(art => {
+                if (categoria === 'todas' || art.classList.contains(categoria)) {
+                    art.classList.add('mostrar');
+                } else {
+                    art.classList.remove('mostrar');
+                }
+            });
+        }
+
+        // Mostrar todo al cargar la página
+        window.onload = function() {
+            filtrarCategoria('todas');
+        };
+    </script>
+
+</body>
+</html>
